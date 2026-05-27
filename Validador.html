@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Certificados Oficiales</title>
+    <!-- Tailwind CSS para un diseño ultra-moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animaciones suaves para transiciones de estados */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col justify-between font-sans antialiased">
+
+    <!-- Header / Barra de Navegación -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-10 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Icono de escudo / certificado -->
+                <svg class="w-8 h-8 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+                <span class="text-xl font-bold text-slate-800 tracking-tight">PPortfolio <span class="text-brand-700 font-normal text-base">| Validador</span></span>
+            </div>
+            <a href="index.html" class="text-sm font-semibold text-slate-600 hover:text-brand-700 transition-colors flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver al Portafolio
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-8 md:py-16 flex flex-col items-center justify-center">
+        
+        <!-- Tarjeta Principal del Validador -->
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 transition-all duration-300">
+            
+            <div class="text-center mb-8">
+                <span class="bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Verificación de Logros</span>
+                <h1 class="text-3xl font-extrabold text-slate-900 mt-3 tracking-tight">Validador de Certificados</h1>
+                <p class="text-slate-500 mt-2 text-sm md:text-base">Ingresa tu documento de identidad (DNI) para validar la autenticidad de tus certificados y descargarlos directamente de nuestros servidores.</p>
+            </div>
+
+            <!-- Formulario de Consulta -->
+            <form id="validadorForm" onsubmit="procesarConsulta(event)" class="space-y-4">
+                <div class="relative">
+                    <label for="dniInput" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Número de DNI / Documento de Identidad</label>
+                    <div class="relative rounded-lg shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <!-- Icono de carnet -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>
+                        </div>
+                        <input type="text" id="dniInput" required pattern="[0-9]{8,15}"
+                            class="block w-full pl-10 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-700 focus:border-brand-700 text-lg tracking-wider placeholder-slate-400 outline-none transition-all" 
+                            placeholder="Ej. 12345678">
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1.5">Solo números. Longitud estándar de 8 a 12 dígitos.</p>
+                </div>
+
+                <button type="submit" id="btnValidar"
+                    class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-150 flex items-center justify-center gap-2 text-lg active:scale-[0.99]">
+                    <span>Validar Certificado</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </form>
+
+            <!-- Zona de Carga (Spinner) -->
+            <div id="loader" class="hidden py-8 flex flex-col items-center justify-center space-y-3">
+                <div class="w-10 h-10 border-4 border-brand-100 border-t-brand-700 rounded-full animate-spin"></div>
+                <p class="text-sm text-slate-500 font-medium">Consultando registros...</p>
+            </div>
+
+            <!-- Contenedor de Mensaje y Resultados -->
+            <div id="resultadoContainer" class="hidden mt-8 fade-in">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+
+            <!-- Indicador de Modo de Prueba (Informativo) -->
+            <div id="demoNotice" class="hidden mt-6 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex items-start gap-2">
+                <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <div>
+                    <strong>Modo Demo Local Activado:</strong> Al ejecutar este archivo localmente (sin GitHub Pages), estamos usando una base de datos interna de respaldo. Prueba escribiendo los DNI <strong>12345678</strong> o <strong>87654321</strong> para ver el funcionamiento.
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-6 text-center text-xs text-slate-400">
+        <div class="max-w-5xl mx-auto px-4">
+            <p>© 2026 PPortfolio - Todos los derechos reservados.</p>
+            <p class="mt-1">Servicio de Validación de Credenciales Académicas y Profesionales Autónomo.</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE PROGRAMACIÓN (JAVASCRIPT) -->
+    <script>
+        // Datos de respaldo / pruebas en caso falle la carga del JSON local
+        const BaseDatosRespaldo = [
+            { "DNI": "12345678", "Nombre": "Juan Pérez", "Curso": "Excel Profesional Avanzado", "RutaCertificado": "assets/certificados/excel_juan.pdf" },
+            { "DNI": "12345678", "Nombre": "Juan Pérez", "Curso": "Gestión de Datos con Power BI", "RutaCertificado": "assets/certificados/powerbi_juan.pdf" },
+            { "DNI": "87654321", "Nombre": "María López", "Curso": "Diseño Web Frontend Moderno", "RutaCertificado": "assets/certificados/web_maria.pdf" }
+        ];
+
+        let baseDeDatosActiva = null;
+
+        // Intentar cargar la base de datos real al iniciar la página
+        window.addEventListener('DOMContentLoaded', async () => {
+            const demoNotice = document.getElementById('demoNotice');
+            try {
+                // Intentamos buscar el archivo JSON de certificados
+                const respuesta = await fetch('./certificados.json');
+                if (!respuesta.ok) {
+                    throw new Error("No se pudo obtener el archivo de certificados.");
+                }
+                baseDeDatosActiva = await respuesta.json();
+                console.log("Base de datos de certificados cargada con éxito desde certificados.json");
+            } catch (error) {
+                console.warn("No se pudo cargar 'certificados.json'. Iniciando modo de respaldo/local. Error:", error.message);
+                baseDeDatosActiva = BaseDatosRespaldo;
+                // Mostrar aviso de demo para facilitar el testeo local al usuario
+                demoNotice.classList.remove('hidden');
+            }
+        });
+
+        // Procesar formulario de consulta
+        function procesarConsulta(event) {
+            event.preventDefault(); // Evitar recarga de página
+
+            const dniInput = document.getElementById('dniInput').value.trim();
+            const btnValidar = document.getElementById('btnValidar');
+            const loader = document.getElementById('loader');
+            const resultadoContainer = document.getElementById('resultadoContainer');
+
+            // Ocultar resultados previos e iniciar carga estética
+            resultadoContainer.classList.add('hidden');
+            resultadoContainer.innerHTML = '';
+            btnValidar.disabled = true;
+            loader.classList.remove('hidden');
+
+            // Pequeña pausa de 800ms para emular búsqueda real y mejorar UX
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                btnValidar.disabled = false;
+
+                if (!baseDeDatosActiva || baseDeDatosActiva.length === 0) {
+                    mostrarError("Error en el sistema de base de datos. Por favor cargue certificados.json.");
+                    return;
+                }
+
+                // Filtrar por DNI para permitir múltiples certificados
+                const certificadosUsuario = baseDeDatosActiva.filter(item => String(item.DNI).trim() === dniInput);
+
+                if (certificadosUsuario.length > 0) {
+                    mostrarCertificados(certificadosUsuario);
+                } else {
+                    mostrarInexistente();
+                }
+
+            }, 800);
+        }
+
+        // Renderizado de certificados encontrados (Éxito)
+        function mostrarCertificados(certificados) {
+            const container = document.getElementById('resultadoContainer');
+            const nombreUsuario = certificados[0].Nombre;
+            
+            let htmlCard = `
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-slate-800">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="bg-emerald-100 p-2.5 rounded-full text-emerald-700 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-emerald-900">Verificación Exitosa</h3>
+                            <p class="text-sm text-emerald-800 mt-1">El usuario ingresado sí se certificó exitosamente en nuestra plataforma.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-emerald-200 pt-4 mb-4">
+                        <span class="text-xs uppercase font-bold text-slate-500 tracking-wider">Estudiante</span>
+                        <p class="text-xl font-bold text-slate-900">${nombreUsuario}</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-xs uppercase font-bold text-slate-500 tracking-wider block mb-1">Certificados Disponibles (${certificados.length})</span>
+            `;
+
+            // Construcción del listado de certificados individuales
+            certificados.forEach(cert => {
+                htmlCard += `
+                    <div class="bg-white border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-sm hover:border-brand-100 transition-colors">
+                        <div class="flex-grow">
+                            <span class="text-xs text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full font-semibold inline-block mb-1">CURSO OFICIAL</span>
+                            <h4 class="font-bold text-slate-800 leading-snug">${cert.Curso}</h4>
+                        </div>
+                        <!-- Enlace dinámico a la carpeta local assets/ de GitHub -->
+                        <a href="${cert.RutaCertificado}" target="_blank"
+                            class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg inline-flex items-center justify-center gap-2 transition-all active:scale-95 shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Descargar PDF
+                        </a>
+                    </div>
+                `;
+            });
+
+            htmlCard += `
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = htmlCard;
+            container.classList.remove('hidden');
+        }
+
+        // Renderizado para DNI no encontrado
+        function mostrarInexistente() {
+            const container = document.getElementById('resultadoContainer');
+            container.innerHTML = `
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 text-slate-800">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-rose-100 p-2.5 rounded-full text-rose-700 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-rose-900">Registro No Encontrado</h3>
+                            <p class="text-sm text-rose-800 mt-1">El DNI ingresado no pertenece a nuestro registro de usuarios certificados.</p>
+                            <p class="text-xs text-rose-700 mt-2">Por favor, verifique que los datos ingresados sean correctos. Si cree que se trata de un error de registro, póngase en contacto con soporte.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.classList.remove('hidden');
+        }
+
+        // Renderizado para Errores Críticos
+        function mostrarError(mensaje) {
+            const container = document.getElementById('resultadoContainer');
+            container.innerHTML = `
+                <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-slate-800">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-amber-100 p-2.5 rounded-full text-amber-700 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-amber-900">Alerta del Sistema</h3>
+                            <p class="text-sm text-amber-800 mt-1">${mensaje}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
