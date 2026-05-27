@@ -3,18 +3,18 @@
     "DNI": "12345678",
     "Nombre": "Juan Pérez",
     "Curso": "Excel Profesional Avanzado",
-    "RutaCertificado": "assets/Certificados/2026 04 CV VMCW.pdf"
+    "RutaCertificado": "/ValidationTest/assets/Certificados/2026 04 CV VMCW.pdf"
   },
   {
     "DNI": "12345678",
     "Nombre": "Juan Pérez",
     "Curso": "Gestión de Datos con Power BI",
-    "RutaCertificado": "assets/Certificados/Doctorado CWVM.pdf"
+    "RutaCertificado": "/ValidationTest/assets/Certificados/Doctorado CWVM.pdf"
   },
   {
     "DNI": "87654321",
     "Nombre": "María López",
     "Curso": "Diseño Web Frontend Moderno",
-    "RutaCertificado": "assets/Certificados/RCU 0347-2026.pdf"
+    "RutaCertificado": "/ValidationTest/assets/Certificados/RCU 0347-2026.pdf"
   }
 ]
