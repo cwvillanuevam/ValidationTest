@@ -1,0 +1,20 @@
+[
+  {
+    "DNI": "12345678",
+    "Nombre": "Juan Pérez",
+    "Curso": "Excel Profesional Avanzado",
+    "RutaCertificado": "assets/certificados/excel_juan.pdf"
+  },
+  {
+    "DNI": "12345678",
+    "Nombre": "Juan Pérez",
+    "Curso": "Gestión de Datos con Power BI",
+    "RutaCertificado": "assets/certificados/powerbi_juan.pdf"
+  },
+  {
+    "DNI": "87654321",
+    "Nombre": "María López",
+    "Curso": "Diseño Web Frontend Moderno",
+    "RutaCertificado": "assets/certificados/web_maria.pdf"
+  }
+]
